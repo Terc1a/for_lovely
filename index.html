@@ -78,7 +78,7 @@
         h1 {
             text-align: center;
             margin-bottom: 30px;
-            color: #ff69b4; /* Изменен цвет */
+            color: #ff69b4;
             font-size: 2.5em;
         }
 
@@ -103,7 +103,7 @@
         }
 
         .greeting {
-            color: #ff69b4; /* Изменен цвет */
+            color: #ff69b4;
             font-weight: bold;
         }
 
@@ -129,10 +129,14 @@
         .toggle-section {
             margin: 30px 0;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .toggle-btn {
-            background-color: #ff69b4; /* Изменен цвет */
+            background-color: #ff69b4;
             border: none;
             color: white;
             padding: 10px 20px;
@@ -141,12 +145,12 @@
             font-family: 'Courier New', monospace;
             font-size: 16px;
             transition: transform 0.2s, background-color 0.2s;
-            margin: 10px;
+            margin: 5px;
         }
 
         .toggle-btn:hover {
             transform: translateY(-3px);
-            background-color: #e05a9b; /* Изменен цвет */
+            background-color: #e05a9b;
         }
 
         .hidden {
@@ -181,7 +185,7 @@
         }
 
         .heart {
-            color: #ff69b4; /* Изменен цвет */
+            color: #ff69b4;
             animation: pulse 1.5s infinite;
             display: inline-block;
             margin: 0 5px;
@@ -208,7 +212,7 @@
 
         .snowflake {
             position: absolute;
-            background-color: #ff69b4; /* Изменен цвет */
+            background-color: #ff69b4;
             border-radius: 50%;
             pointer-events: none;
             opacity: 0.7;
@@ -261,11 +265,39 @@
         }
 
         .pixel.filled {
-            background-color: #ff69b4; /* Изменен цвет */
+            background-color: #ff69b4;
         }
 
         .dark-mode .pixel.filled {
             background-color: #ff79c6;
+        }
+
+        .control-panel {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .toggle-btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .control-panel, .toggle-section {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -432,19 +464,16 @@ $ ./render_greeting.py --special-person="Ярочка" --celebration="наша_�
 
         // Создаем матрицу для хранения текущего состояния
         let currentPattern = [...heartPattern];
-        let colors = ['#ffb6c1', '#ff69b4', '#ff1493', '#ff3366', '#e05a9b']; // Изменены цвета
+        let colors = ['#ffb6c1', '#ff69b4', '#ff1493', '#ff3366', '#e05a9b'];
 
         // Создаем панель управления
         const controlPanel = document.createElement('div');
-        controlPanel.style.display = 'flex';
-        controlPanel.style.justifyContent = 'center';
-        controlPanel.style.margin = '10px 0';
+        controlPanel.className = 'control-panel';
 
         // Кнопка для сброса к исходному сердцу
         const resetBtn = document.createElement('button');
         resetBtn.textContent = 'Сбросить';
         resetBtn.className = 'toggle-btn';
-        resetBtn.style.marginRight = '10px';
 
         // Кнопка для случайной расцветки
         const randomColorBtn = document.createElement('button');
@@ -455,7 +484,6 @@ $ ./render_greeting.py --special-person="Ярочка" --celebration="наша_�
         const pulseBtn = document.createElement('button');
         pulseBtn.textContent = 'Анимировать';
         pulseBtn.className = 'toggle-btn';
-        pulseBtn.style.marginLeft = '10px';
 
         // Добавляем кнопки на панель
         controlPanel.appendChild(resetBtn);
